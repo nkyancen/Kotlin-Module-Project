@@ -2,11 +2,12 @@ package common
 
 import menus.*
 import units.*
+import common.Strings.*
 
 open class AppMenu<T : AppUnit<S>, S : AppUnit<Note>>(val t: T) : MenuInterface<T, S> {
 
     var isExit = false
-    val content = mutableListOf("Выход", "Создать ")
+    val content = mutableListOf<String>("$EXIT", "$SHOW_EMPTY")
 
     init {
         t.content.forEach { line -> content.add(line.name) }
@@ -15,7 +16,7 @@ open class AppMenu<T : AppUnit<S>, S : AppUnit<Note>>(val t: T) : MenuInterface<
     fun start() {
         while (!isExit) {
             showMenu()
-            println("Выберите пункт меню:")
+            println(CHOSE_MENU_ITEM)
             chooseMenuItem(analyseNumber(this))
         }
     }
@@ -45,14 +46,14 @@ open class AppMenu<T : AppUnit<S>, S : AppUnit<Note>>(val t: T) : MenuInterface<
     }
 
     fun showMenu() {
-        println("-------------")
-        if (t.name != "") {
-            println("Имя: ${t.name}")
+        println(SHOW_FILLER)
+        if (t.name != "$SHOW_EMPTY") {
+            println("$SHOW_NAME ${t.name}")
         }
         if (t is Note) {
-            println("Содержание заметки:")
+            println(SHOW_CONTENT_OF_NOTE)
             t.contentOfNote.forEach { line -> println(line) }
-            println("------------")
+            println(SHOW_FILLER)
         }
         content.forEachIndexed { index, value -> println("${index}. $value") }
     }

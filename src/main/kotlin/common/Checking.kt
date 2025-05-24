@@ -1,16 +1,18 @@
 package common
 
-import java.util.Scanner
+import common.Strings.HAS_EMPTY_INPUT
+import scanner
 
 interface Checking {
 
     fun checkContent(): String {
-        val input = Scanner(System.`in`).nextLine()
+        val input = scanner.nextLine()
         return if (input.trim() != "" && input.isNotEmpty()) {
             input
         } else {
-            println("Ввод не должен быть пустым! Повторите ввод.")
+            println(HAS_EMPTY_INPUT)
             checkContent()
         }
     }
+
 }

@@ -1,7 +1,8 @@
 package units
 
 import common.AppUnit
-import java.util.Scanner
+import scanner
+import common.Strings.INPUT_TEXT_TO_NOTE
 
 class Note(
     override val name: String,
@@ -9,7 +10,7 @@ class Note(
 ) : AppUnit<Note>(name) {
 
     override fun add() {
-        println("Введите текстовую строку:")
-        contentOfNote.add(Scanner(System.`in`).nextLine())
+        println(INPUT_TEXT_TO_NOTE)
+        contentOfNote.add(scanner.nextLine())
     }
 }

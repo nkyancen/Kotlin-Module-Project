@@ -1,14 +1,15 @@
 package units
 
 import common.AppUnit
+import common.Strings.*
 
 class Archive(override val name: String) : AppUnit<Note>() {
 
     override fun add() {
-        println("Введите название заметки:")
+        println(INPUT_NOTE_NAME)
         var nameOfNote = checkContent()
 
-        println("Введите текст заметки:")
+        println(INPUT_NOTE_CONTENT)
         val contentOfNote = checkContent()
 
         content.add(Note(nameOfNote, mutableListOf(contentOfNote)))
